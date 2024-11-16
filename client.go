@@ -25,7 +25,7 @@ type Client struct {
 // these default arguments, and all option will be passed down to the services and
 // requests that this client makes.
 func NewClient(opts ...option.RequestOption) (r *Client) {
-	defaults := []option.RequestOption{option.WithEnvironmentProduction()}
+	defaults := []option.RequestOption{option.WithEnvironmentSandbox()}
 	if o, ok := os.LookupEnv("BEARER_TOKEN"); ok {
 		defaults = append(defaults, option.WithBearerToken(o))
 	}
