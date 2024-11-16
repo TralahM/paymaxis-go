@@ -221,17 +221,17 @@ func WithRequestTimeout(dur time.Duration) RequestOption {
 	}
 }
 
+// WithEnvironmentSandbox returns a RequestOption that sets the current
+// environment to be the "sandbox" environment. An environment specifies which base URL
+// to use by default.
+func WithEnvironmentSandbox() RequestOption {
+	return WithBaseURL("https://app-sandbox.paymaxis.com/")
+}
+
 // WithEnvironmentProduction returns a RequestOption that sets the current
 // environment to be the "production" environment. An environment specifies which base URL
 // to use by default.
 func WithEnvironmentProduction() RequestOption {
-	return WithBaseURL("https://app-sandbox.paymaxis.com/")
-}
-
-// WithEnvironmentEnvironment1 returns a RequestOption that sets the current
-// environment to be the "environment_1" environment. An environment specifies which base URL
-// to use by default.
-func WithEnvironmentEnvironment1() RequestOption {
 	return WithBaseURL("https://app.paymaxis.com/")
 }
 
