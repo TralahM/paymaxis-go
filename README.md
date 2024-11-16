@@ -50,7 +50,7 @@ import (
 
 func main() {
 	client := paymaxis.NewClient(
-		option.WithBearerToken("My Bearer Token"), // defaults to os.LookupEnv("BEARER_TOKEN")
+		option.WithBearerToken("My Bearer Token"), // defaults to os.LookupEnv("PAYMAXIS_API_KEY")
 		option.WithEnvironmentProduction(),        // defaults to option.WithEnvironmentSandbox()
 	)
 	payment, err := client.Payments.New(context.TODO(), paymaxis.PaymentNewParams{
