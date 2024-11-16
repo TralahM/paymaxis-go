@@ -24,7 +24,7 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/TralahM/paymaxis-go@v0.0.1-alpha.0'
+go get -u 'github.com/TralahM/paymaxis-go@v0.1.0-alpha.1'
 ```
 
 <!-- x-release-please-end -->
@@ -50,8 +50,8 @@ import (
 
 func main() {
 	client := paymaxis.NewClient(
-		option.WithBearerToken("My Bearer Token"), // defaults to os.LookupEnv("BEARER_TOKEN")
-		option.WithEnvironmentEnvironment1(),      // defaults to option.WithEnvironmentProduction()
+		option.WithBearerToken("My Bearer Token"), // defaults to os.LookupEnv("PAYMAXIS_API_KEY")
+		option.WithEnvironmentProduction(),        // defaults to option.WithEnvironmentSandbox()
 	)
 	payment, err := client.Payments.New(context.TODO(), paymaxis.PaymentNewParams{
 		Currency:    paymaxis.F("EUR"),
