@@ -25,7 +25,7 @@ func TestPaymentOperationList(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Payments.Operations.List(context.TODO(), "id")
+	_, err := client.Payments.Operations.List(context.TODO(), "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 	if err != nil {
 		var apierr *paymaxis.Error
 		if errors.As(err, &apierr) {
