@@ -116,7 +116,7 @@ func TestPaymentGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Payments.Get(context.TODO(), "id")
+	_, err := client.Payments.Get(context.TODO(), "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 	if err != nil {
 		var apierr *paymaxis.Error
 		if errors.As(err, &apierr) {
