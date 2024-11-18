@@ -25,7 +25,7 @@ func TestSubscriptionGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithBearerToken("My Bearer Token"),
 	)
-	_, err := client.Subscriptions.Get(context.TODO(), "id")
+	_, err := client.Subscriptions.Get(context.TODO(), "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 	if err != nil {
 		var apierr *paymaxis.Error
 		if errors.As(err, &apierr) {
@@ -49,7 +49,7 @@ func TestSubscriptionUpdateWithOptionalParams(t *testing.T) {
 	)
 	_, err := client.Subscriptions.Update(
 		context.TODO(),
-		"id",
+		"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 		paymaxis.SubscriptionUpdateParams{
 			State: paymaxis.F(paymaxis.SubscriptionUpdateParamsStateCancelled),
 		},
