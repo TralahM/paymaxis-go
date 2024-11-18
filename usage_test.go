@@ -25,8 +25,11 @@ func TestUsage(t *testing.T) {
 		option.WithBearerToken("My Bearer Token"),
 	)
 	payment, err := client.Payments.New(context.TODO(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err != nil {
 		t.Error(err)

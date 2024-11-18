@@ -38,8 +38,11 @@ func TestUserAgentHeader(t *testing.T) {
 		}),
 	)
 	client.Payments.New(context.Background(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if userAgent != fmt.Sprintf("Paymaxis/Go %s", internal.PackageVersion) {
 		t.Errorf("Expected User-Agent to be correct, but got: %#v", userAgent)
@@ -64,8 +67,11 @@ func TestRetryAfter(t *testing.T) {
 		}),
 	)
 	res, err := client.Payments.New(context.Background(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
@@ -101,8 +107,11 @@ func TestDeleteRetryCountHeader(t *testing.T) {
 		option.WithHeaderDel("X-Stainless-Retry-Count"),
 	)
 	res, err := client.Payments.New(context.Background(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
@@ -133,8 +142,11 @@ func TestOverwriteRetryCountHeader(t *testing.T) {
 		option.WithHeader("X-Stainless-Retry-Count", "42"),
 	)
 	res, err := client.Payments.New(context.Background(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
@@ -164,8 +176,11 @@ func TestRetryAfterMs(t *testing.T) {
 		}),
 	)
 	res, err := client.Payments.New(context.Background(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
@@ -189,8 +204,11 @@ func TestContextCancel(t *testing.T) {
 	cancelCtx, cancel := context.WithCancel(context.Background())
 	cancel()
 	res, err := client.Payments.New(cancelCtx, paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
@@ -211,8 +229,11 @@ func TestContextCancelDelay(t *testing.T) {
 	cancelCtx, cancel := context.WithTimeout(context.Background(), 2*time.Millisecond)
 	defer cancel()
 	res, err := client.Payments.New(cancelCtx, paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err == nil || res != nil {
 		t.Error("expected there to be a cancel error and for the response to be nil")
@@ -239,8 +260,11 @@ func TestContextDeadline(t *testing.T) {
 			}),
 		)
 		res, err := client.Payments.New(deadlineCtx, paymaxis.PaymentNewParams{
-			Currency:    paymaxis.F("EUR"),
-			PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+			Currency:       paymaxis.F("EUR"),
+			PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+			Amount:         paymaxis.F(4000.000000),
+			PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+			StartRecurring: paymaxis.F(true),
 		})
 		if err == nil || res != nil {
 			t.Error("expected there to be a deadline error and for the response to be nil")

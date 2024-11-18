@@ -24,7 +24,7 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/TralahM/paymaxis-go@v0.1.0-alpha.1'
+go get -u 'github.com/TralahM/paymaxis-go@v0.1.0-alpha.2'
 ```
 
 <!-- x-release-please-end -->
@@ -54,8 +54,11 @@ func main() {
 		option.WithEnvironmentProduction(),        // defaults to option.WithEnvironmentSandbox()
 	)
 	payment, err := client.Payments.New(context.TODO(), paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	})
 	if err != nil {
 		panic(err.Error())
@@ -179,8 +182,11 @@ To handle errors, we recommend that you use the `errors.As` pattern:
 
 ```go
 _, err := client.Payments.New(context.TODO(), paymaxis.PaymentNewParams{
-	Currency:    paymaxis.F("EUR"),
-	PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+	Currency:       paymaxis.F("EUR"),
+	PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+	Amount:         paymaxis.F(4000.000000),
+	PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+	StartRecurring: paymaxis.F(true),
 })
 if err != nil {
 	var apierr *paymaxis.Error
@@ -209,8 +215,11 @@ defer cancel()
 client.Payments.New(
 	ctx,
 	paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	},
 	// This sets the per-retry timeout
 	option.WithRequestTimeout(20*time.Second),
@@ -248,8 +257,11 @@ client := paymaxis.NewClient(
 client.Payments.New(
 	context.TODO(),
 	paymaxis.PaymentNewParams{
-		Currency:    paymaxis.F("EUR"),
-		PaymentType: paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Currency:       paymaxis.F("EUR"),
+		PaymentType:    paymaxis.F(paymaxis.PaymentNewParamsPaymentTypeDeposit),
+		Amount:         paymaxis.F(4000.000000),
+		PaymentMethod:  paymaxis.F(paymaxis.PaymentNewParamsPaymentMethodBasicCard),
+		StartRecurring: paymaxis.F(true),
 	},
 	option.WithMaxRetries(5),
 )
