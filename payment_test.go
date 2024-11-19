@@ -88,7 +88,7 @@ func TestPaymentNewWithOptionalParams(t *testing.T) {
 			RetryStrategy: paymaxis.F(paymaxis.PaymentNewParamsSubscriptionRetryStrategy{
 				Frequency:         paymaxis.F(int64(2)),
 				NumberOfCycles:    paymaxis.F(int64(12)),
-				AmountAdjustments: paymaxis.F([]int64{int64(1), int64(1), int64(1)}),
+				AmountAdjustments: paymaxis.F([]int64{int64(1)}),
 				FrequencyUnit:     paymaxis.F(paymaxis.PaymentNewParamsSubscriptionRetryStrategyFrequencyUnitMinute),
 			}),
 			StartTime: paymaxis.F("2030-12-25T10:11:12"),
